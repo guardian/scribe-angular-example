@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>Scribe Angular Example</title>
+    <script>
+      // http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
+      window.name = "NG_DEFER_BOOTSTRAP!";
+    </script>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    button {
+      height: 3em;
+    }
+
+    button.active {
+      border-style: inset;
+    }
+
+    .scribe-html {
+      width: 100%;
+      font-family: monospace;
+      border: 1px solid hsl(0, 0%, 80%);
+      padding: 0.5em;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    ui-rich-text-editor {
+      display: block;
+    }
+
+    ui-rich-text-editor-toolbar {
+      margin-bottom: 1em;
+      display: block;
+    }
+
+    .ui-rich-text-editor__input-container {
+      position: relative;
+      border: 1px solid hsl(0, 0%, 80%);
+    }
+
+    .ui-rich-text-editor__placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* Allow the user to click through the placeholder */
+      pointer-events: none;
+      color: hsl(0, 0%, 45%);
+    }
+
+    .ui-rich-text-editor__placeholder,
+    .ui-rich-text-editor__input {
+      height: 370px;
+      overflow: auto;
+      padding: 0.5em;
+    }
+  </style>
+  <body ng:controller="ExampleCtrl">
+    <h1>Scribe Angular Example</h1>
+    <ui-rich-text-editor ui:placeholder="Enter some text…" ui:config="{
+      paragraphs: true,
+      commands: [
+        'bold', 'italic', 'strikeThrough',
+        'removeFormat', 'linkPrompt', 'unlink',
+        'insertUnorderedList', 'insertOrderedList',
+        'blockquote', 'quote', 'h2',
+        'undo', 'redo'
+      ]
+    }" ng:model="exampleModel" class="scribe"></ui-rich-text-editor>
+    <h2>Output</h2>
+    <textarea class="scribe-html" rows="15"></textarea>
+    <script src="./bower_components/requirejs/require.js" data-main="./example"></script>
+  </body>
+</html>
